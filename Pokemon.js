@@ -1,32 +1,32 @@
-
 export default class Pokemon {
-  #data;
-  #container;
+  #obj = {};
+  #index = 0;
 
-  constructor(data, container) {
-    this.#data = data;
-    this.#container = container;
-    this.render();
+  constructor(obj = {}, szuloElem) {
+    this.#obj = obj;
+    this.szuloElem = szuloElem;
+    this.megjelenit();
+    this.esemenykezelo();
   }
 
-  render() {
-    const img = document.createElement("img");
-    img.src = this.#data.sprites.front_default;
-    img.alt = this.#data.name;
-    img.style.cursor = "pointer";
+  megjelenit() {
+    let kod = `
+        <div class="kep">
+            <img src="${this.#obj.sprites.front_default}" alt="${this.#obj.name}">
+        </div>
+        `;
+    this.szuloElem.insertAdjacentHTML("beforeend", kod);
+  }
 
-    img.addEventListener("click", () => {
-      const event = new CustomEvent("pokemonSelected", {
-        detail: {
-          name: this.#data.name,
-          order: this.#data.order,
-          types: this.#data.types.map(t => t.type.name)
-        }
-      });
-
-      document.dispatchEvent(event);
+  esemenykezelo() {
+    const kepElem = this.szuloElem.querySelector(".kep:last-child img");
+    kepElem.addEventListener("click", () => {
+      this.sajatesemeny();
     });
+  }
 
-    this.#container.appendChild(img);
+  sajatesemeny() {
+    const e = new CustomEvent("kattintas", { detail: this.#obj });
+    window.dispatchEvent(e);
   }
 }

@@ -1,14 +1,20 @@
-import PokemonService from "./Services.js";
-import Pokemon from "./Pokemon.js";
 import Info from "./Info.js";
+import Pokemon from "./Pokemon.js";
+import Services from "./Services.js";
 
-const article = document.querySelector("article");
-const section = document.querySelector("section");
+const taroloELEM = document.querySelector(".pokemon-tarolo");
+const adatELEM = document.querySelector(".adatok");
 
-PokemonService.getPokemon(12, (pokemonData) => {
-  new Pokemon(pokemonData, article);
-});
+const services = new Services();
 
-document.addEventListener("pokemonSelected", (e) => {
-  new Info(section, e.detail);
+for (let i = 1; i <= 50; i++) {
+    services.getAdat(`https://pokeapi.co/api/v2/pokemon/${i}`, kepMegjelenit);
+}
+
+function kepMegjelenit(data) {
+    new Pokemon(data, taroloELEM);
+}
+
+window.addEventListener("kattintas", function(event) {
+    new Info(event.detail, adatELEM);
 });

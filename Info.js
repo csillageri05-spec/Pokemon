@@ -1,15 +1,21 @@
 export default class Info {
-  constructor(container, data) {
-    this.container = container;
-    this.data = data;
-    this.render();
+  #obj = {};
+
+  constructor(obj = {}, szuloElem) {
+    this.#obj = obj;
+    this.szuloElem = szuloElem;
+    this.szuloElem.innerHTML = "";
+    this.megjelenit();
   }
 
-  render() {
-    this.container.innerHTML = `
-      <h2>${this.data.name}</h2>
-      <p><strong>Order:</strong> ${this.data.order}</p>
-      <p><strong>Types:</strong> ${this.data.types.join(", ")}</p>
-    `;
+  megjelenit() {
+    let kod = `
+        <div>
+            <h1 class="adatok">Name: ${this.#obj.name}</h1>
+            <h3>Type: <span class="adatok">${this.#obj.types[0].type.name}</span></h3>
+        </div>
+        `;
+
+    this.szuloElem.insertAdjacentHTML("beforeend", kod);
   }
 }
