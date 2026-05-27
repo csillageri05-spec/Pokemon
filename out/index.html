@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Home - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="EsemenyKezelo.html">EsemenyKezelo</a></li><li><a href="Gyumolcs.html">Gyumolcs</a></li><li><a href="Info.html">Info</a></li><li><a href="JatekTer.html">JatekTer</a></li><li><a href="Jatekos.html">Jatekos</a></li><li><a href="Pokemon.html">Pokemon</a></li><li><a href="Services.html">Services</a></li><li><a href="module.exports_module.exports.html">exports</a></li><li></li><li></li><li></li><li></li><li></li><li></li></ul><h3>Global</h3><ul><li><a href="global.html#esemenykezelo">esemenykezelo</a></li><li><a href="global.html#frissites">frissites</a></li><li><a href="global.html#getAdat">getAdat</a></li><li><a href="global.html#gombokLekerdezese">gombokLekerdezese</a></li><li><a href="global.html#inditas">inditas</a></li><li><a href="global.html#jatekCiklus">jatekCiklus</a></li><li><a href="global.html#kepMegjelenit">kepMegjelenit</a></li><li><a href="global.html#kirajzolas">kirajzolas</a></li><li><a href="global.html#magassag">magassag</a></li><li><a href="global.html#megjelenit">megjelenit</a></li><li><a href="global.html#sajatesemeny">sajatesemeny</a></li><li><a href="global.html#szelesseg">szelesseg</a></li><li><a href="global.html#ujrageneralas">ujrageneralas</a></li><li><a href="global.html#utkozesVizsgalat">utkozesVizsgalat</a></li><li><a href="global.html#x">x</a></li><li><a href="global.html#y">y</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+    <section class="package">
+        <h3> </h3>		
+    </section>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <section class="readme usertext">
+        <article><h1>Böngésző Alapú Pokémon Játék Cizelláltan</h1>
+<p>Egy objektumorientált (OOP), JavaScript alapú, böngészőben futó játék, amely a PokéAPI segítségével valós idejű adatokkal dolgozik. A projekt a moduláris felépítésre, az eseményvezérelt programozásra és a tiszta kód (SOLID) elveire fókuszál.</p>
+<h2>Jellemzők</h2>
+<ul>
+<li><strong>Dinamikus Adatkezelés:</strong> A rendszer a PokéAPI végpontjairól (REST API) olvassa be a több mint 1000 elérhető Pokémon adatait a <code>fetch</code> API segítségével.</li>
+<li><strong>Egyedi Kiválasztó Felület:</strong> A játékos a listából kattintással választhatja ki a karakterét, melynek adatait egy információs panel részletezi.</li>
+<li><strong>Folyékony Játékmenet:</strong> A mozgás nem rácsalapú ugrálás, hanem folyamatos, 60 FPS (Frame Per Second) sebességű játékhurok (<code>requestAnimationFrame</code>) által hajtott pixelalapú elmozdulás.</li>
+<li><strong>AABB Ütközésvizsgálat:</strong> A játéktéren megjelenő bogyók begyűjtését a motor egy precíz, tengelyekre illesztett határoló doboz (Axis-Aligned Bounding Box) logikával számolja ki.</li>
+<li><strong>Fejlesztői Dokumentáció:</strong> A kód teljes egészében JSDoc szabvány szerint van felcímkézve, amelyből a docdash sablonnal statikus HTML dokumentáció generálható.</li>
+</ul>
+<h2>Alkalmazott Technológiák</h2>
+<ul>
+<li><strong>HTML5 &amp; CSS3:</strong> CSS Grid és Flexbox elrendezések, reszponzív logikai játéktér.</li>
+<li><strong>Vanilla JavaScript (ES6+):</strong> Osztályok, privát mezők (<code>#</code>), aszinkron hívások (Promises), egyedi események (CustomEvent), DOM manipuláció.</li>
+<li><strong>Eszközök:</strong> Node.js, NPM (JSDoc csomagkezelés).</li>
+</ul>
+<h2>Architektúra és Specifikáció</h2>
+<p>A kód szigorúan szétválasztott, egyetlen felelősséggel rendelkező osztályokból áll, amelyek külön ES6 modulokban (<code>.js</code> fájlokban) helyezkednek el.</p>
+<h3>1. API és Adatréteg</h3>
+<ul>
+<li><strong><code>Services.js</code></strong>: Felelős a hálózati kommunikációért. Aszinkron hívásokkal (Fetch API) kéri le a Pokémonok JSON adatait.</li>
+<li><strong><code>Pokemon.js</code></strong>: Egyetlen Pokémon vizuális kártyáját építi fel a DOM-ban, és kezeli a kiválasztást (kattintás).</li>
+<li><strong><code>Info.js</code></strong>: Megjeleníti a kiválasztott entitás tulajdonságait (név, típus), és tartalmazza a játék indítását triggerelő gombot.</li>
+</ul>
+<h3>2. Játékmotor (Game Engine)</h3>
+<ul>
+<li><strong><code>JatekTer.js</code></strong>: A motor magja. Összefogja az elemeket, futtatja a végtelen játékhurkot (<code>requestAnimationFrame</code>), és minden képkockánál levezényli a frissítéseket, valamint az AABB ütközésvizsgálatot.</li>
+<li><strong><code>EsemenyKezelo.js</code></strong>: Tiszta bemenetkezelő (Input Handler). Csak a <code>keydown</code> és <code>keyup</code> eseményeket monitorozza, hogy a játékos irányítási szándékát biztosítsa a mozgáskiszámításhoz.</li>
+</ul>
+<h3>3. Játékelemek (Entities)</h3>
+<ul>
+<li><strong><code>Jatekos.js</code></strong>: A játékos által irányított karakter. Nyilvántartja saját X/Y koordinátáit, szélességét, magasságát és sebességét. Felelős a saját DOM elemének újrapozicionálásáért az aktuális gombnyomások és a pálya határai alapján.</li>
+<li><strong><code>Gyumolcs.js</code></strong>: A gyűjthető tárgyak logikája. Képes véletlenszerűen újragenerálni a saját pozícióját a játéktér (szülő elem) méretein belül, ha ütközés történik.</li>
+</ul></article>
+    </section>
+
+
+
+
+
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            index.js
+        
+        </h2>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>A fo belepesi pont, amely felelos a komponensek osszekoteseert es a jatek inditasaert.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+            
+                <div class="description usertext"><p>A fo belepesi pont, amely felelos a komponensek osszekoteseert es a jatek inditasaert.</p></div>
+            
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Wed May 27 2026 14:40:48 GMT+0200 (közép-európai nyári idő) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+
+</body>
+</html>
