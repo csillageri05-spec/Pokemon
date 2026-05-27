@@ -1,6 +1,20 @@
+/**
+ * @class Info
+ * @classdesc A kivalasztott Pokemon adatait megjelenito es a jatekot indito gombot kezelo osztaly.
+ */
 export default class Info {
+  /**
+   * A kivalasztott Pokemon osszes adata.
+   * @private
+   * @type {Object}
+   */
   #obj = {};
 
+  /**
+   * Letrehozza az informacios panelt.
+   * @param {Object} obj - A Pokemon adatai.
+   * @param {HTMLElement} szuloElem - A DOM elem, ahova a html generalodik.
+   */
   constructor(obj = {}, szuloElem) {
     this.#obj = obj;
     this.szuloElem = szuloElem;
@@ -9,6 +23,9 @@ export default class Info {
     this.esemenykezelo();
   }
 
+  /**
+   * Osszeallitja es beszurja a HTML kodot a szulo elembe.
+   */
   megjelenit() {
     let kod = `
         <div>
@@ -21,6 +38,9 @@ export default class Info {
     this.szuloElem.insertAdjacentHTML("beforeend", kod);
   }
 
+  /**
+   * Beallitja a gomb kattintas esemenyet, ami elsuti a 'jatekInditas' egyedi esemenyt.
+   */
   esemenykezelo() {
     const gomb = this.szuloElem.querySelector("#jatek-start-gomb");
     if (gomb) {

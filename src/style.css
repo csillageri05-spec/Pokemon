@@ -1,7 +1,12 @@
+/*
+ * Alapveto stilusok a bongeszo alapu Pokemon jatekhoz.
+ * Box-sizing normalizalasa minden elemre.
+ */
 * {
   box-sizing: border-box;
 }
 
+/* A fo oldal grid elrendezese: a pokemon lista bal oldalon, az adatok jobb oldalon. */
 body {
   display: grid;
   grid-template-columns: 1fr 300px ;
@@ -11,6 +16,7 @@ body {
   padding: 10px;
 }
 
+/* Az informacios panel stilusa. A sticky segitsegevel a gorgetesnel is lathato marad. */
 .adatok {
   text-transform: capitalize;
   grid-area: a;
@@ -21,6 +27,7 @@ body {
   align-self: start;
 }
 
+/* A kis kepeket tarolo fo doboz, flexbox-szal a sortores erdekeben. */
 .pokemon-tarolo {
   display: flex;
   flex-wrap: wrap;
@@ -28,6 +35,7 @@ body {
   grid-area: p;
 }
 
+/* Egyetlen Pokemon kepenek keretezese. */
 .kep {
   border: black solid 1px;
   margin: 5px;
@@ -35,6 +43,7 @@ body {
   gap: 5px;
 }
 
+/* A rejtett, de a jatek inditasakor megjeleno palya stilusa. Kepernyo kozepere igazitva. */
 .jatekter {
   position: absolute;
   top: 50%;
