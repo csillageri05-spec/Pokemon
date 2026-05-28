@@ -1,6 +1,6 @@
 /**
  * @class Pokemon
- * @classdesc Egyetlen Pokemon kiskepet es a hozza tartozo kivalasztasi esemenyt kezelo osztaly.
+ * @classdesc Egyetlen Pokemon kisképet és a hozzá tartozó kiválasztási eseményt kezelő osztály.
  */
 export default class Pokemon {
   /**
@@ -11,16 +11,16 @@ export default class Pokemon {
   #obj = {};
 
   /**
-   * A sorszam vagy index tarolasa.
+   * A sorszám vagy index tárolása.
    * @private
    * @type {number}
    */
   #index = 0;
 
   /**
-   * Letrehozza a Pokemon kartyat a feluleten.
-   * @param {Object} obj - A Pokemon osszes adatat tartalmazo objektum.
-   * @param {HTMLElement} szuloElem - A tarolo DOM elem.
+   * Létrehozza a Pokemon kártyát a felületen.
+   * @param {Object} obj - A Pokemon összes adatat tartalmazó objektum.
+   * @param {HTMLElement} szuloElem - A tároló DOM elem.
    */
   constructor(obj = {}, szuloElem) {
     this.#obj = obj;
@@ -30,7 +30,7 @@ export default class Pokemon {
   }
 
   /**
-   * Legeneralja a kepet tartalmazo HTML strukturat.
+   * Legenerálja a képet tartalmazo HTML struktúrát.
    */
   megjelenit() {
     let kod = `
@@ -42,7 +42,7 @@ export default class Pokemon {
   }
 
   /**
-   * Beallitja a kattintas esemenyfigyelot az eppen letrehozott kepre.
+   * Beállítja a kattintas esemenyfigyelot az eppen letrehozott kepre.
    */
   esemenykezelo() {
     const kepElem = this.szuloElem.querySelector(".kep:last-child img");

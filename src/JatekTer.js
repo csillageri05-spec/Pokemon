@@ -62,8 +62,8 @@ export default class JatekTer {
   }
 
   /**
-   * A játekhurok, amely minden egyes kepkockan lefut.
-   * @param {number} idobelyeg - A bongeszo altal atadott idobelyeg.
+   * A játekhurok, amely minden egyes képkockán lefut.
+   * @param {number} idobelyeg - A böngesző által átadott időbélyeg.
    */
   jatekCiklus(idobelyeg) {
     if (!this.mozog) {
@@ -77,7 +77,7 @@ export default class JatekTer {
   }
 
   /**
-   * Frissiti a jatekos es az elemek logikai allapotat, es ellenorzi az utkozeseket.
+   * Frissíti a játékos és az elemek logikai állapotát, és ellenőrzi az ütközéseket.
    */
   frissites() {
     const gombok = this.bemenet.gombokLekerdezese();
@@ -95,7 +95,7 @@ export default class JatekTer {
   }
 
   /**
-   * Meghivja a jatekos es a gyumolcsok DOM frissiteset (kirajzolasat).
+   * Meghívja a játékos és a gyümölcsök DOM frissítését.
    */
   kirajzolas() {
     this.jatekos.kirajzolas();
@@ -106,10 +106,10 @@ export default class JatekTer {
   }
 
   /**
-   * AABB modszerrel vizsgalja ket elem (jatekos es gyumolcs) utkozeset.
-   * @param {Jatekos} j - A jatekos peldanya.
-   * @param {Gyumolcs} b - A gyumolcs peldanya.
-   * @returns {boolean} Igaz, ha a ket elem doboza fedi egymast.
+   * AABB módszerrel vizsgálja két elem ütközését.
+   * @param {Jatekos} j - A játékos példánya.
+   * @param {Gyumolcs} b - A gyümölcs példánya.
+   * @returns {boolean} Igaz, ha a két elem doboza fedi egymást.
    */
   utkozesVizsgalat(j, b) {
     if (
