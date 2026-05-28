@@ -4,16 +4,16 @@ import EsemenyKezelo from "./EsemenyKezelo.js";
 
 /**
  * @class JatekTer
- * @classdesc A jatek logikajat, a jatek hurkot es az elemek utkozeset kezelo fo osztaly.
+ * @classdesc A játék logikáját, a játék hurkot és az elemek ütközését kezelő fő osztály.
  */
 export default class JatekTer {
   /**
-   * Letrehozza a jatek motorjat es peldanyositja a szereploket.
-   * @param {HTMLElement} jatekterElem - A jatekteret jelolo fo DOM elem.
-   * @param {string} pokemonKepUrl - A kivalasztott Pokemon sprite URL-je.
+   * Létrehozza a játék motorját és példányosítja a szereplőket.
+   * @param {HTMLElement} jatekterElem - A játékteret jelölő fő DOM elem.
+   * @param {string} pokemonKepUrl - A kiválasztott Pokemon sprite URL-je.
    */
   constructor(jatekterElem, pokemonKepUrl) {
-    /** * A jatekter kinyert meretei.
+    /** * A játéktér kinyert méretei.
      * @type {Object} 
      */
     this.jatekMeret = {
@@ -21,17 +21,17 @@ export default class JatekTer {
       magassag: jatekterElem.clientHeight,
     };
 
-    /** * A billentyuzet bemeneteit figyelo peldany.
+    /** * A billentyűzet bemeneteit figyelő példány.
      * @type {EsemenyKezelo} 
      */
     this.bemenet = new EsemenyKezelo();
     
-    /** * A jatekos peldanya.
+    /** * A játékos példánya.
      * @type {Jatekos} 
      */
     this.jatekos = new Jatekos(50, 50, 60, 60, 5, jatekterElem, pokemonKepUrl);
 
-    /** * A palyan levo gyumolcsok tombje.
+    /** * A pályán lévő gyümölcsök tömbje.
      * @type {Array<Gyumolcs>} 
      */
     this.gyumolcs = [];
@@ -41,12 +41,12 @@ export default class JatekTer {
       this.jatekMeret.magassag
     );
 
-    /** * Tarolja, hogy a jatek eppen fut-e.
+    /** * Tárolja, hogy a játék éppen fut-e.
      * @type {boolean} 
      */
     this.mozog = false;
     
-    /** * A jatekos altal osszegyujtott pontok szama.
+    /** * A játékos által összegyüjtött pontok száma.
      * @type {number} 
      */
     this.pontszam = 0;
@@ -54,7 +54,7 @@ export default class JatekTer {
     this.jatekCiklus = this.jatekCiklus.bind(this);
   }
   /**
-   * Elinditja a jatekot es a folyamatos kepkocka-frissitest.
+   * Elindítja a játékot és a folyamatos képkocka-frissítést.
    */
   inditas() {
     this.mozog = true;
@@ -62,7 +62,7 @@ export default class JatekTer {
   }
 
   /**
-   * A jatekhurok, amely minden egyes kepkockan lefut.
+   * A játekhurok, amely minden egyes kepkockan lefut.
    * @param {number} idobelyeg - A bongeszo altal atadott idobelyeg.
    */
   jatekCiklus(idobelyeg) {

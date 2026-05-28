@@ -1,56 +1,56 @@
 /**
  * @class Gyumolcs
- * @classdesc A jatekteren megjeleno gyujtheto targyakat kezelo osztaly.
+ * @classdesc A játékteren megjelenő gyűjthető gyümölcsöket kezelő osztály.
  */
 export default class Gyumolcs {
     /**
-     * Az X koordinata.
+     * Az X koordináta.
      * @private
      * @type {number}
      */
     #x = 0;
 
     /**
-     * Az Y koordinata.
+     * Az Y koordináta.
      * @private
      * @type {number}
      */
     #y = 0;
 
     /**
-     * A gyumolcs szelessege pixelben.
+     * A gyümölcs szélessége pixelben.
      * @private
      * @type {number}
      */
     #szelesseg = 0;
 
     /**
-     * A gyumolcs magassaga pixelben.
+     * A gyümölcs magassága pixelben.
      * @private
      * @type {number}
      */
     #magassag = 0;
 
     /**
-     * A gyumolcs tipusa (pl. szoveges ikon).
+     * A gyümölcs típusa.
      * @private
      * @type {string}
      */
     #tipus = "";
 
     /**
-     * A gyumolcsot megjelento DOM elem.
+     * A gyümölcsöt megjelenítő DOM elem.
      * @private
      * @type {HTMLElement}
      */
     #elem;
 
     /**
-     * Letrehoz egy uj gyumolcsot a megadott meretekkel es hozzaadja a szulo elemhez.
-     * @param {number} szelesseg - A gyumolcs szelessege.
-     * @param {number} magassag - A gyumolcs magassaga.
-     * @param {string} tipus - A megjelenitendo karakter vagy ikon.
-     * @param {HTMLElement} szuloElem - A DOM elem, amibe a gyumolcs bekerul.
+     * Létrehoz egy új gyümölcsöt a megadott méretekkel és hozzáadja a szülő elemhez.
+     * @param {number} szelesseg - A gyümölcs szélessége.
+     * @param {number} magassag - A gyümölcs magassága.
+     * @param {string} tipus - A megjelenítendő ikon.
+     * @param {HTMLElement} szuloElem - A DOM elem, amibe a gyümölcs bekerül.
      */
     constructor(szelesseg, magassag, tipus, szuloElem) {
         this.#szelesseg = szelesseg;
@@ -69,17 +69,17 @@ export default class Gyumolcs {
         szuloElem.appendChild(this.#elem);
     }
 
-    /** @returns {number} A gyumolcs aktualis X koordinataja. */
+    /** @returns {number} A gyümölcs aktuális X koordinátája. */
     get x() { return this.#x; }
-    /** @returns {number} A gyumolcs aktualis Y koordinataja. */
+    /** @returns {number} A gyümölcs aktuális Y koordinátája. */
     get y() { return this.#y; }
-    /** @returns {number} A gyumolcs szelessege. */
+    /** @returns {number} A gyümölcs szélessége. */
     get szelesseg() { return this.#szelesseg; }
-    /** @returns {number} A gyumolcs magassaga. */
+    /** @returns {number} A gyümölcs magassága. */
     get magassag() { return this.#magassag; }
 
     /**
-     * Frissiti a gyumolcs DOM elemenez poziciojat az aktualis koordinatak alapjan.
+     * Frissíti a gyümölcs DOM elemenek pozícióját az aktuális koordináták alapján.
      */
     kirajzolas() {
         this.#elem.style.left = `${this.#x}px`;
@@ -87,9 +87,9 @@ export default class Gyumolcs {
     }
 
     /**
-     * Veletlenszeru uj koordinatakat general a gyumolcsnek a jatekter hatarain belul.
-     * @param {number} maxSzelesseg - A jatekter maximalis szelessege.
-     * @param {number} maxMagassag - A jatekter maximalis magassaga.
+     * Véletlenszerű új koordinátákat generál a gyümölcsnek a játéktér határain belül.
+     * @param {number} maxSzelesseg - A játéktér maximális szélessége.
+     * @param {number} maxMagassag - A játéktér maximális magassága.
      */
     ujrageneralas(maxSzelesseg, maxMagassag) {
         this.#x = Math.floor(Math.random() * (maxSzelesseg - this.#szelesseg));
