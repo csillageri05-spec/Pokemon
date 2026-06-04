@@ -10,6 +10,7 @@ import JatekTer from "./JatekTer.js";
 
 const taroloELEM = document.querySelector(".pokemon-tarolo");
 const adatELEM = document.querySelector(".adatok");
+const adatELEM2 = document.querySelector(".adatok2");
 const jatekterELEM = document.querySelector(".jatekter");
 
 const services = new Services();
@@ -29,13 +30,14 @@ function kepMegjelenit(data) {
 
 // Figyeli a Pokemon kiválasztásakor induló egyedi eseményt
 window.addEventListener("kattintas", function(event) {
-    new Info(event.detail, adatELEM);
+    new Info(event.detail, adatELEM, adatELEM2);
 });
 
 // Figyeli a játék indítását kérő egyedi eseményt, majd átvált a játéktér nézetre
 window.addEventListener("jatekInditas", function(event) {
     document.querySelector(".pokemon-tarolo").style.display = "none";
     document.querySelector(".adatok").style.display = "none";
+    document.querySelector(".adatok2").style.display = "none";
     document.querySelector(".gombok").style.display = "none";
     
     jatekterELEM.style.display = "block";
