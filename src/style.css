@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  font-family: 'Press Start 2P', cursive; /* A klasszikus Pokémon betűtípus */
+  font-family: 'Press Start 2P', cursive;
 }
 
 body {
@@ -10,14 +10,13 @@ body {
   padding: 20px;
 }
 
-/* Főképernyő elrendezése */
 #fo-kepernyo {
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .fejlec {
-  background-color: #e53935; /* Pokédex piros */
+  background-color: #e53935;
   color: white;
   padding: 20px;
   border: 4px solid #b71c1c;
@@ -56,8 +55,8 @@ body {
   flex-wrap: wrap;
   gap: 10px;
   max-height: 60vh;
-  overflow-y: auto; /* Görgethető legyen a sok pokémon */
-  background-color: #98cb98; /* Retro Gameboy zöldes háttér */
+  overflow-y: auto;
+  background-color: #98cb98;
   padding: 15px;
   border: inset 4px #555;
 }
@@ -90,7 +89,6 @@ body {
   line-height: 1.8;
 }
 
-/* Játéktér és UI */
 .jatekter {
   position: absolute;
   top: 50%;
@@ -102,7 +100,6 @@ body {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0,0,0,0.8);
-  /* A háttérszínt JS-ből fogjuk állítani a témától függően */
 }
 
 #jatek-ui {
@@ -113,7 +110,7 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 10px 20px;
-  z-index: 10; /* Hogy mindig a játékos/gyümölcs felett legyen */
+  z-index: 10;
 }
 
 #pontkijelzo {

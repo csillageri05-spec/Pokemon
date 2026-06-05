@@ -6,14 +6,14 @@ export default class Pokemon {
   /**
    * @private
    * @type {Object}
-   * @description A Pokémon összes adatát tartalmazó objektum, amit az API visszaadott.
+   * @description A Pokémon összes adatát tartalmazó objektum.
    */
   #obj = {};
 
   /**
    * Létrehozza a Pokémon kártyát a felületen és beállítja az eseményfigyelőt.
-   * * @param {Object} [obj={}] - A Pokémon adatait tartalmazó objektum.
-   * @param {HTMLElement} szuloElem - A DOM elem, ahová a Pokémon kisképe generálódik.
+   * @param {Object} [obj={}] - A Pokémon adatait tartalmazó objektum.
+   * @param {HTMLElement} szuloElem - A DOM elem, ahová a kiskép generálódik.
    */
   constructor(obj = {}, szuloElem) {
     this.#obj = obj;
@@ -23,7 +23,7 @@ export default class Pokemon {
   }
 
   /**
-   * Legenerálja a képet tartalmazó HTML struktúrát és hozzáfűzi a szülő elemhez.
+   * Legenerálja a képet tartalmazó HTML struktúrát.
    */
   megjelenit() {
     let kod = `
@@ -35,7 +35,7 @@ export default class Pokemon {
   }
 
   /**
-   * Beállítja a kattintás eseményfigyelőt az éppen létrehozott képre.
+   * Beállítja a kattintás eseményfigyelőt.
    */
   esemenykezelo() {
     const kepElem = this.szuloElem.querySelector(".kep:last-child img");
@@ -45,8 +45,7 @@ export default class Pokemon {
   }
 
   /**
-   * Elsüt egy 'kattintas' nevű egyedi eseményt a globális `window` objektumon, 
-   * átadva a kiválasztott Pokémon adatait.
+   * Elsüt egy 'kattintas' nevű egyedi eseményt a globális window objektumon.
    */
   sajatesemeny() {
     const e = new CustomEvent("kattintas", { detail: this.#obj });
