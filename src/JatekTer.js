@@ -35,8 +35,7 @@ export default class JatekTer {
     };
 
     this.bemenet = new EsemenyKezelo();
-    this.jatekos = new Jatekos(50, 50, 60, 60, 5, jatekterElem, pokemonKepUrl);
-
+this.jatekos = new Jatekos(50, 50, 100, 100, 5, jatekterElem, pokemonKepUrl);
     this.gyumolcs = [];
     const induloBogyo = POKEMON_BOGYOK[Math.floor(Math.random() * POKEMON_BOGYOK.length)];
     this.gyumolcs.push(new Gyumolcs(40, 40, induloBogyo, jatekterElem));
