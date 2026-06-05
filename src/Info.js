@@ -1,19 +1,19 @@
 /**
  * @class Info
- * @classdesc A kiválasztott Pokemon adatait megjelenítő és a játékot indító gombot kezelő osztály.
+ * @classdesc A kiválasztott Pokémon adatait megjelenítő és a játékot indító gombot kezelő osztály.
  */
 export default class Info {
   /**
-   * A kiválasztott Pokemon összes adata.
    * @private
    * @type {Object}
+   * @description A kiválasztott Pokémon összes adata.
    */
   #obj = {};
 
   /**
-   * Létrehozza az információs panelt.
-   * @param {Object} obj - A Pokemon adatai.
-   * @param {HTMLElement} szuloElem - A DOM elem, ahová a html generálódik.
+   * Létrehozza az információs panelt és a játék indítása gombot.
+   * * @param {Object} [obj={}] - A kiválasztott Pokémon adatai.
+   * @param {HTMLElement} szuloElem - A DOM elem, ahová az adatok HTML kódja generálódik.
    */
   constructor(obj = {}, szuloElem) {
     this.#obj = obj;
@@ -24,7 +24,7 @@ export default class Info {
   }
 
   /**
-   * Összeállítja és beszúrja a HTML kódot a szülő elembe.
+   * Összeállítja és beszúrja az adatokat, valamint az indító gombot a szülő elembe.
    */
   megjelenit() {
     let kod = `
@@ -33,15 +33,14 @@ export default class Info {
             <h3>Type: <span class="adatok">${this.#obj.types[0].type.name} <br> </span></h3>
             <h3>Second type: <span class="adatok2">${this.#obj.types[1]?.type.name || "None"}</span></h3>
             
-            <button id="jatek-start-gomb" style="margin-top: 15px; padding: 10px; cursor: pointer;">Játék Indítása</button>
+            <button id="jatek-start-gomb" style="margin-top: 15px; padding: 10px; cursor: pointer; font-family: inherit;">Játék Indítása</button>
         </div>
         `;
-
     this.szuloElem.insertAdjacentHTML("beforeend", kod);
   }
 
   /**
-   * Beállítja a gomb kattintás eseményét, ami elindítja a 'jatekInditas' egyedi eseményt.
+   * Beállítja a gomb kattintás eseményét, ami elindítja a 'jatekInditas' egyedi eseményt a kép URL-jével.
    */
   esemenykezelo() {
     const gomb = this.szuloElem.querySelector("#jatek-start-gomb");

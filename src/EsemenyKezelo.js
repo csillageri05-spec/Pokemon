@@ -1,17 +1,17 @@
 /**
  * @class EsemenyKezelo
- * @classdesc A billentyűzet eseményeit figyelő és rögzítő osztály.
+ * @classdesc A billentyűzet eseményeit (gombnyomásokat) figyelő és állapotukat rögzítő osztály.
  */
 export default class EsemenyKezelo {
   /**
    * @private
-   * @type {Object}
-   * @description A lenyomott gombokat tároló objektum. A kulcs a gomb neve, az érték egy boolean.
+   * @type {Object<string, boolean>}
+   * @description A lenyomott gombokat tároló objektum. A kulcs a gomb neve (pl. 'ArrowUp'), az érték egy logikai igaz/hamis.
    */
   #gombok;
 
   /**
-   * Létrehozza az EsemenyKezelo példányt és elinditja az eseményfigyelőket.
+   * Létrehozza az EsemenyKezelo példányt és elindítja a globális eseményfigyelőket.
    */
   constructor() {
     this.#gombok = {};
@@ -20,7 +20,7 @@ export default class EsemenyKezelo {
 
   /**
    * @private
-   * @description Beállitja a 'keydown' es 'keyup' eseményfigyelőket az ablakra .
+   * @description Beállítja a 'keydown' és 'keyup' eseményfigyelőket az ablakra (window).
    */
   #esemenykezelok() {
     window.addEventListener("keydown", (e) => {
@@ -33,8 +33,8 @@ export default class EsemenyKezelo {
   }
 
   /**
-   * Visszaadja az éppen lenyomott gombok állapotát.
-   * @returns {Object} A gombok állapotát tartalmazó objektum.
+   * Visszaadja a jelenleg lenyomott gombok aktuális állapotát.
+   * * @returns {Object<string, boolean>} A gombok állapotát tartalmazó objektum.
    */
   gombokLekerdezese() {
     return this.#gombok;

@@ -1,55 +1,55 @@
 /**
  * @class Gyumolcs
- * @classdesc A játékteren megjelenő gyűjthető gyümölcsöket kezelő osztály.
+ * @classdesc A játéktéren megjelenő, gyűjthető elemeket (pl. gyümölcsök, tárgyak) kezelő osztály.
  */
 export default class Gyumolcs {
     /**
-     * Az X koordináta.
      * @private
      * @type {number}
+     * @description Az X koordináta.
      */
     #x = 0;
 
     /**
-     * Az Y koordináta.
      * @private
      * @type {number}
+     * @description Az Y koordináta.
      */
     #y = 0;
 
     /**
-     * A gyümölcs szélessége pixelben.
      * @private
      * @type {number}
+     * @description A gyümölcs szélessége pixelben.
      */
     #szelesseg = 0;
 
     /**
-     * A gyümölcs magassága pixelben.
      * @private
      * @type {number}
+     * @description A gyümölcs magassága pixelben.
      */
     #magassag = 0;
 
     /**
-     * A gyümölcs típusa.
      * @private
      * @type {string}
+     * @description A gyümölcs típusa (pl. emoji karakter, amit megjelenít).
      */
     #tipus = "";
 
     /**
-     * A gyümölcsöt megjelenítő DOM elem.
      * @private
      * @type {HTMLElement}
+     * @description A gyümölcsöt megjelenítő DOM elem (div).
      */
     #elem;
 
     /**
-     * Létrehoz egy új gyümölcsöt a megadott méretekkel és hozzáadja a szülő elemhez.
-     * @param {number} szelesseg - A gyümölcs szélessége.
+     * Létrehoz egy új gyümölcsöt a megadott méretekkel és hozzáadja a játéktérhez.
+     * * @param {number} szelesseg - A gyümölcs szélessége.
      * @param {number} magassag - A gyümölcs magassága.
-     * @param {string} tipus - A megjelenítendő ikon.
+     * @param {string} tipus - A megjelenítendő emoji ikon.
      * @param {HTMLElement} szuloElem - A DOM elem, amibe a gyümölcs bekerül.
      */
     constructor(szelesseg, magassag, tipus, szuloElem) {
@@ -79,7 +79,7 @@ export default class Gyumolcs {
     get magassag() { return this.#magassag; }
 
     /**
-     * Frissíti a gyümölcs DOM elemenek pozícióját az aktuális koordináták alapján.
+     * Frissíti a gyümölcs DOM elemének CSS pozícióját az aktuális X és Y koordináták alapján.
      */
     kirajzolas() {
         this.#elem.style.left = `${this.#x}px`;
@@ -87,8 +87,8 @@ export default class Gyumolcs {
     }
 
     /**
-     * Véletlenszerű új koordinátákat generál a gyümölcsnek a játéktér határain belül.
-     * @param {number} maxSzelesseg - A játéktér maximális szélessége.
+     * Véletlenszerű új koordinátákat generál a gyümölcsnek úgy, hogy az a játéktér határain belül maradjon.
+     * * @param {number} maxSzelesseg - A játéktér maximális szélessége.
      * @param {number} maxMagassag - A játéktér maximális magassága.
      */
     ujrageneralas(maxSzelesseg, maxMagassag) {

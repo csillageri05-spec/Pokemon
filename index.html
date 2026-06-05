@@ -1,17 +1,43 @@
 <!doctype html>
-<html lang="en">
+<html lang="hu">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Csillag Gergő Zsolt</title>
+    <title>Pokémon Kaland - Csillag Gergő Zsolt</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src/style.css" />
     <script type="module" src="src/index.js"></script>
   </head>
   <body>
-    <div class="pokemon-tarolo"></div>
-    <div class="adatok"></div>
-    <div class="adatok2"></div>
-    <div class="gombok"></div>
-    <div class="jatekter" style="display: none;"></div>
+    <div id="fo-kepernyo">
+      <div class="fejlec">
+        <h1>Válassz Pokémont!</h1>
+        <div class="helyszin-valaszto">
+          <label for="tema-select">Helyszín: </label>
+          <select id="tema-select">
+            <option value="fufu">Füves mező (Viridian Forest)</option>
+            <option value="barlang">Sötét barlang (Mt. Moon)</option>
+            <option value="vizpart">Vízpart (Cerulean City)</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="kivalaszto-elrendezes">
+        <div class="pokemon-tarolo"></div>
+        <div class="oldalsav">
+          <div class="adatok">Kattints egy Pokémonra a Pokédex adatokért!</div>
+          <div class="adatok2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="jatekter" style="display: none;">
+      <div id="jatek-ui">
+        <span id="pontkijelzo">Pont: 0</span>
+        <button id="kilepes-gomb">Menekülés</button>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,59 +1,96 @@
-/*
- * Alapveto stilusok a bongeszo alapu Pokemon jatekhoz.
- * Box-sizing normalizalasa minden elemre.
- */
 * {
   box-sizing: border-box;
+  font-family: 'Press Start 2P', cursive; /* A klasszikus Pokémon betűtípus */
 }
 
-/* A fo oldal grid elrendezese: a pokemon lista bal oldalon, az adatok jobb oldalon. */
 body {
-  display: grid;
-  grid-template-columns: 1fr 300px ;
-  grid-template-areas: 'p a';
-  gap: 20px; 
+  background-color: #2b2b2b;
+  color: #333;
   margin: 0;
+  padding: 20px;
+}
+
+/* Főképernyő elrendezése */
+#fo-kepernyo {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.fejlec {
+  background-color: #e53935; /* Pokédex piros */
+  color: white;
+  padding: 20px;
+  border: 4px solid #b71c1c;
+  border-radius: 10px 10px 0 0;
+  text-align: center;
+}
+
+.fejlec h1 {
+  font-size: 24px;
+  margin-top: 0;
+  text-shadow: 2px 2px #000;
+}
+
+.helyszin-valaszto select {
+  font-family: 'Press Start 2P', cursive;
   padding: 10px;
+  font-size: 12px;
+  background-color: #fff;
+  border: 2px solid #000;
+  cursor: pointer;
 }
 
-/* Az informacios panel stilusa. A sticky segitsegevel a gorgetesnel is lathato marad. */
-.adatok {
-  text-transform: capitalize;
-  grid-area: a;
-  background-color: #f5f5f5; 
-  padding: 15px;
-  position: sticky;
-  top: 10px;       
-  align-self: start;
+.kivalaszto-elrendezes {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 20px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border: 4px solid #b71c1c;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
 }
 
-.adatok2 {
-  text-transform: capitalize;
-  grid-area: a;
-  background-color: #f5f5f5; 
-  padding: 15px;
-  position: sticky;
-  top: 10px;       
-  align-self: start;
-}
-
-/* A kis kepeket tarolo fo doboz, flexbox-szal a sortores erdekeben. */
 .pokemon-tarolo {
   display: flex;
   flex-wrap: wrap;
-  padding: 10px;
-  grid-area: p;
+  gap: 10px;
+  max-height: 60vh;
+  overflow-y: auto; /* Görgethető legyen a sok pokémon */
+  background-color: #98cb98; /* Retro Gameboy zöldes háttér */
+  padding: 15px;
+  border: inset 4px #555;
 }
 
-/* Egyetlen Pokemon kepenek keretezese. */
 .kep {
-  border: black solid 1px;
-  margin: 5px;
-  padding: 5px;
-  gap: 5px;
+  background-color: white;
+  border: 2px solid #333;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.1s;
 }
 
-/* A rejtett, de a jatek inditasakor megjeleno palya stilusa. Kepernyo kozepere igazitva. */
+.kep:hover {
+  transform: scale(1.1);
+  border-color: #e53935;
+}
+
+.oldalsav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.adatok, .adatok2 {
+  text-transform: capitalize;
+  background-color: #fff;
+  border: inset 4px #555;
+  padding: 15px;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+/* Játéktér és UI */
 .jatekter {
   position: absolute;
   top: 50%;
@@ -61,7 +98,39 @@ body {
   transform: translate(-50%, -50%);
   width: 800px;
   height: 600px;
-  background-color: #e0f7fa;
-  border: 2px solid #000;
+  border: 8px solid #333;
+  border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  /* A háttérszínt JS-ből fogjuk állítani a témától függően */
+}
+
+#jatek-ui {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  z-index: 10; /* Hogy mindig a játékos/gyümölcs felett legyen */
+}
+
+#pontkijelzo {
+  font-size: 20px;
+  color: white;
+  text-shadow: 2px 2px #000;
+}
+
+#kilepes-gomb {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #e53935;
+  color: white;
+  border: 2px solid #000;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+#kilepes-gomb:hover {
+  background-color: #b71c1c;
 }

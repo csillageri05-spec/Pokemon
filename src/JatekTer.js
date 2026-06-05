@@ -4,35 +4,46 @@ import EsemenyKezelo from "./EsemenyKezelo.js";
 
 /**
  * @class JatekTer
- * @classdesc A játék logikáját, a játék hurkot és az elemek ütközését kezelő fő osztály.
+ * @classdesc A játék logikáját, a folyamatos renderelési ciklust (játékhurok), a pontszámítást és az ütközéseket kezelő fő osztály.
  */
 export default class JatekTer {
   /**
-   * Létrehozza a játék motorját és példányosítja a szereplőket.
-   * @param {HTMLElement} jatekterElem - A játékteret jelölő fő DOM elem.
-   * @param {string} pokemonKepUrl - A kiválasztott Pokemon sprite URL-je.
+   * Létrehozza a játék motorját, beállítja a témát és példányosítja a szereplőket.
+   * * @param {HTMLElement} jatekterElem - A játékteret jelölő fő DOM elem.
+   * @param {string} pokemonKepUrl - A kiválasztott Pokémon sprite URL-je.
+   * @param {string} tema - A kiválasztott helyszín azonosítója (pl. 'fufu', 'barlang', 'vizpart').
    */
-  constructor(jatekterElem, pokemonKepUrl) {
-    /** * A játéktér kinyert méretei.
-     * @type {Object} 
+  constructor(jatekterElem, pokemonKepUrl, tema) {
+    /** * @type {HTMLElement} 
+     * @description A játéktér DOM eleme.
+     */
+    this.jatekterElem = jatekterElem;
+    
+    // Téma (háttérszín) beállítása
+    if (tema === "fufu") this.jatekterElem.style.backgroundColor = "#78C850";
+    else if (tema === "barlang") this.jatekterElem.style.backgroundColor = "#705848";
+    else if (tema === "vizpart") this.jatekterElem.style.backgroundColor = "#6890F0";
+
+    /** * @type {Object} 
+     * @description A játéktér dinamikusan kinyert méretei.
      */
     this.jatekMeret = {
       szelesseg: jatekterElem.clientWidth,
       magassag: jatekterElem.clientHeight,
     };
 
-    /** * A billentyűzet bemeneteit figyelő példány.
-     * @type {EsemenyKezelo} 
+    /** * @type {EsemenyKezelo} 
+     * @description A billentyűzet bemeneteit figyelő példány.
      */
     this.bemenet = new EsemenyKezelo();
     
-    /** * A játékos példánya.
-     * @type {Jatekos} 
+    /** * @type {Jatekos} 
+     * @description A felhasználó által irányított játékos példánya.
      */
     this.jatekos = new Jatekos(50, 50, 60, 60, 5, jatekterElem, pokemonKepUrl);
 
-    /** * A pályán lévő gyümölcsök tömbje.
-     * @type {Array<Gyumolcs>} 
+    /** * @type {Array<Gyumolcs>} 
+     * @description A pályán lévő gyűjthető tárgyak tömbje.
      */
     this.gyumolcs = [];
     this.gyumolcs.push(new Gyumolcs(30, 30, "🍎", jatekterElem));
@@ -41,20 +52,28 @@ export default class JatekTer {
       this.jatekMeret.magassag
     );
 
-    /** * Tárolja, hogy a játék éppen fut-e.
-     * @type {boolean} 
+    /** * @type {boolean} 
+     * @description Tárolja, hogy a játékhurok éppen fut-e.
      */
     this.mozog = false;
     
-    /** * A játékos által összegyüjtött pontok száma.
-     * @type {number} 
+    /** * @type {number} 
+     * @description A játékos által összegyűjtött pontok száma.
      */
     this.pontszam = 0;
+    
+    /** * @type {HTMLElement} 
+     * @description A pontszámot megjelenítő HTML elem.
+     */
+    this.pontKijelzoElem = document.getElementById("pontkijelzo");
+    this.pontKijelzoElem.textContent = `Pont: ${this.pontszam}`;
 
+    // A játékhurok this kontextusának rögzítése
     this.jatekCiklus = this.jatekCiklus.bind(this);
   }
+
   /**
-   * Elindítja a játékot és a folyamatos képkocka-frissítést.
+   * Elindítja a játékot és a folyamatos képkocka-frissítést (requestAnimationFrame).
    */
   inditas() {
     this.mozog = true;
@@ -62,22 +81,25 @@ export default class JatekTer {
   }
 
   /**
-   * A játekhurok, amely minden egyes képkockán lefut.
-   * @param {number} idobelyeg - A böngesző által átadott időbélyeg.
+   * Leállítja a játékhurkot. Hasznos a kilépés gomb megnyomásakor.
+   */
+  leallitas() {
+    this.mozog = false;
+  }
+
+  /**
+   * A játékhurok, amely minden egyes képkockán (frame-en) lefut.
+   * * @param {number} idobelyeg - A böngésző által átadott időbélyeg.
    */
   jatekCiklus(idobelyeg) {
-    if (!this.mozog) {
-      return;
-    }
-
+    if (!this.mozog) return;
     this.frissites();
     this.kirajzolas();
-
     requestAnimationFrame(this.jatekCiklus);
   }
 
   /**
-   * Frissíti a játékos és az elemek logikai állapotát, és ellenőrzi az ütközéseket.
+   * Frissíti a játékos és az elemek logikai állapotát, valamint ellenőrzi az ütközéseket.
    */
   frissites() {
     const gombok = this.bemenet.gombokLekerdezese();
@@ -86,6 +108,7 @@ export default class JatekTer {
     for (let i = 0; i < this.gyumolcs.length; i++) {
       if (this.utkozesVizsgalat(this.jatekos, this.gyumolcs[i])) {
         this.pontszam++;
+        this.pontKijelzoElem.textContent = `Pont: ${this.pontszam}`;
         this.gyumolcs[i].ujrageneralas(
           this.jatekMeret.szelesseg,
           this.jatekMeret.magassag
@@ -95,21 +118,20 @@ export default class JatekTer {
   }
 
   /**
-   * Meghívja a játékos és a gyümölcsök DOM frissítését.
+   * Meghívja a játékos és a gyümölcsök vizuális (DOM) frissítését.
    */
   kirajzolas() {
     this.jatekos.kirajzolas();
-    
     for (let i = 0; i < this.gyumolcs.length; i++) {
       this.gyumolcs[i].kirajzolas();
     }
   }
 
   /**
-   * AABB módszerrel vizsgálja két elem ütközését.
-   * @param {Jatekos} j - A játékos példánya.
+   * AABB (Axis-Aligned Bounding Box) módszerrel vizsgálja két négyszögletes elem ütközését.
+   * * @param {Jatekos} j - A játékos példánya.
    * @param {Gyumolcs} b - A gyümölcs példánya.
-   * @returns {boolean} Igaz, ha a két elem doboza fedi egymást.
+   * @returns {boolean} Igaz (true), ha a két elem doboza fedi egymást, egyébként hamis (false).
    */
   utkozesVizsgalat(j, b) {
     if (
@@ -119,8 +141,7 @@ export default class JatekTer {
       j.y + j.magassag > b.y
     ) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 }

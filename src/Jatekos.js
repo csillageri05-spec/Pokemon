@@ -1,59 +1,59 @@
 /**
  * @class Jatekos
- * @classdesc A játékost (Pokemont) irányító, pozícióját és megjelenítését kezelő osztály.
+ * @classdesc A játékost (avatart) irányító, pozícióját számoló és megjelenítését kezelő osztály.
  */
 export default class Jatekos {
   /**
-   * Aktuális X pozíció.
    * @private
    * @type {number}
+   * @description Aktuális X pozíció.
    */
   #x = 0;
 
   /**
-   * Aktuális Y pozíció.
    * @private
    * @type {number}
+   * @description Aktuális Y pozíció.
    */
   #y = 0;
 
   /**
-   * A karakter szélessége.
    * @private
    * @type {number}
+   * @description A karakter szélessége.
    */
   #szelesseg = 0;
 
   /**
-   * A karakter magassága.
    * @private
    * @type {number}
+   * @description A karakter magassága.
    */
   #magassag = 0;
 
   /**
-   * A mozgási sebesség.
    * @private
    * @type {number}
+   * @description A mozgási sebesség (hány pixelt mozog képkockánként).
    */
   #sebesseg = 0;
 
   /**
-   * A játekost képező kép elem.
    * @private
    * @type {HTMLImageElement}
+   * @description A játékost reprezentáló kép (img) elem a DOM-ban.
    */
   #elem;
 
   /**
-   * Inicializálja a játékost és létrehozza a hozzá tartozó képet a DOM-ban.
-   * @param {number} x - Kezdő X pozíció.
+   * Inicializálja a játékost és létrehozza a hozzá tartozó képet a játéktéren.
+   * * @param {number} x - Kezdő X pozíció.
    * @param {number} y - Kezdő Y pozíció.
    * @param {number} szelesseg - Karakter szélessége.
    * @param {number} magassag - Karakter magassága.
    * @param {number} sebesseg - Mozgási sebesség.
    * @param {HTMLElement} szuloElem - A DOM elem, ahová a játékos kerül.
-   * @param {string} kepUrl - A megjelenítendő Pokemon képenek elérési útja.
+   * @param {string} kepUrl - A megjelenítendő Pokémon képének API-ból kapott elérési útja.
    */
   constructor(x, y, szelesseg, magassag, sebesseg, szuloElem, kepUrl) {
     this.#x = x;
@@ -80,9 +80,9 @@ export default class Jatekos {
   get magassag() { return this.#magassag; }
 
   /**
-   * Kiszámolja az új koordinátákat a lenyomott gombok és a pálya határai alapján.
-   * @param {Object} gombok - A lenyomott gombokat tartalmazó objektum.
-   * @param {Object} jatekMeret - A játéktér méreteit tartalmazó objektum.
+   * Kiszámolja és frissíti az új koordinátákat a lenyomott gombok és a pálya határai alapján.
+   * * @param {Object<string, boolean>} gombok - A lenyomott gombokat tartalmazó objektum.
+   * @param {Object} jatekMeret - A játéktér dimenzióit tartalmazó objektum (szelesseg, magassag).
    */
   frissites(gombok, jatekMeret) {
     if ((gombok["ArrowUp"] || gombok["w"]) && this.#y > 0) {
@@ -100,7 +100,7 @@ export default class Jatekos {
   }
 
   /**
-   * Frissíti a játekos DOM elemeinek helyzetét a képernyőn.
+   * Frissíti a játékos DOM elemének helyzetét a képernyőn a kiszámolt koordináták alapján.
    */
   kirajzolas() {
     this.#elem.style.left = `${this.#x}px`;

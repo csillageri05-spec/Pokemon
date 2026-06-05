@@ -1,19 +1,17 @@
 /**
  * @class Services
- * @classdesc Az API kereseket (halozati kommunikaciot) bonyolito osztaly.
+ * @classdesc Az API kéréseket (hálózati kommunikációt) bonyolító osztály.
  */
 export default class Services {
     /**
-     * Ures konstruktor a szolgaltatas inicializalasara.
+     * Létrehozza a szolgáltatás példányát.
      */
-    constructor() {
-
-    }
+    constructor() {}
     
     /**
-     * Aszinkron modon lekeri az adatokat a megadott vegpontrol, majd meghivja a callback fuggvenyt.
-     * @param {string} vegpont - Az API eleresi utja (URL).
-     * @param {Function} callback - A fuggveny, amely megkapja a feldolgozott JSON adatot.
+     * Aszinkron módon lekéri az adatokat a megadott végpontról, majd meghívja a callback függvényt a kapott adattal.
+     * * @param {string} vegpont - Az API elérési útja (URL).
+     * @param {Function} callback - A függvény, amely megkapja a feldolgozott JSON adatot.
      */
     getAdat(vegpont, callback) {
         fetch(vegpont)
